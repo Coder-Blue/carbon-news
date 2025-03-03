@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:@tanstack/eslint-plugin-router/recommended",
+    "plugin:@eslint/js/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react-refresh/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:jsx-a11y/recommended",
+    "standard"
+  ],
+  "plugins": [
+    "@tanstack/query",
+    "@tanstack/eslint-plugin-router",
+    "react",
+    "jsx-a11y",
+    "@typescript-eslint",
+    "tailwindcss",
+    "react-hooks",
+    "react-refresh",
+    "drizzle",
+    "prettier"
+  ],
+  "rules": {
+    "no-undef": "off"
+  }
+}
