@@ -1,5 +1,5 @@
-import app from "@/app/server";
 import { createAPIFileRoute } from "@tanstack/react-start/api";
+import app from "@/server";
 
 export const APIRoute = createAPIFileRoute("/api/$")({
   GET: ({ request }) => {
