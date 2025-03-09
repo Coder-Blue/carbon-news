@@ -42,5 +42,7 @@ export const commentRelations = relations(commentsTable, ({ one, many }) => ({
 }));
 
 export const insertCommentsSchema = createInsertSchema(commentsTable, {
-  content: z.string().min(3, { message: "Comment must be at least 3 chars" }),
+  content: z
+    .string()
+    .min(3, { message: "Bình luận phải ít nhất 3 kí tự trở lên" }),
 });

@@ -22,11 +22,11 @@ export const postsTable = pgTable("posts", {
 });
 
 export const insertPostSchema = createInsertSchema(postsTable, {
-  title: z.string().min(3, { message: "Title must be atleast 3 chars" }),
+  title: z.string().min(3, { message: "Tiêu đề ít nhất 3 ký tự trở lên" }),
   url: z
     .string()
     .trim()
-    .url({ message: "URL must be a valid URL" })
+    .url({ message: "Phải là URL hợp lệ" })
     .optional()
     .or(z.literal("")),
   content: z.string().optional(),
