@@ -20,7 +20,7 @@ export const commentsTable = pgTable("comments", {
   points: integer("points").default(0).notNull(),
 });
 
-export const commentRelation = relations(commentsTable, ({ one, many }) => ({
+export const commentRelations = relations(commentsTable, ({ one, many }) => ({
   author: one(userTable, {
     fields: [commentsTable.userId],
     references: [userTable.id],
@@ -42,7 +42,5 @@ export const commentRelation = relations(commentsTable, ({ one, many }) => ({
 }));
 
 export const insertCommentsSchema = createInsertSchema(commentsTable, {
-  content: z
-    .string()
-    .min(3, { message: "Bình luận phải ít nhất 3 kí tự trở lên" }),
+  content: z.string().min(3, { message: "Comment must be at least 3 chars" }),
 });

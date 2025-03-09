@@ -3,8 +3,8 @@ import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 import { userTable } from "./auth";
-import { postUpvotesTable } from "./upvotes";
 import { commentsTable } from "./comments";
+import { postUpvotesTable } from "./upvotes";
 
 export const postsTable = pgTable("posts", {
   id: serial("id").primaryKey(),
@@ -22,11 +22,11 @@ export const postsTable = pgTable("posts", {
 });
 
 export const insertPostSchema = createInsertSchema(postsTable, {
-  title: z.string().min(3, { message: "Tiêu đề ít nhất 3 ký tự trở lên" }),
+  title: z.string().min(3, { message: "Title must be atleast 3 chars" }),
   url: z
     .string()
     .trim()
-    .url({ message: "Phải là URL hợp lệ" })
+    .url({ message: "URL must be a valid URL" })
     .optional()
     .or(z.literal("")),
   content: z.string().optional(),

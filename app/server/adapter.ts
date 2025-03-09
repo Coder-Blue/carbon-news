@@ -5,7 +5,7 @@ import * as process from "node:process";
 import { z } from "zod";
 import { sessionTable, userRelations, userTable } from "./db/schemas/auth";
 import { postsTable, postsRelations } from "./db/schemas/posts";
-import { commentRelation, commentsTable } from "./db/schemas/comments";
+import { commentRelations, commentsTable } from "./db/schemas/comments";
 import {
   commentUpvotesTable,
   commentUpvoteRelations,
@@ -33,7 +33,7 @@ export const db = drizzle(queryClient, {
     commentUpvoteRelations,
     postUpvoteRelations,
     userRelations,
-    commentRelation,
+    commentRelations,
   },
 });
 

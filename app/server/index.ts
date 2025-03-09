@@ -5,6 +5,7 @@ import { lucia } from "./lucia";
 import * as process from "node:process";
 import { authRouter } from "./routes/auth";
 import { postRouter } from "./routes/posts";
+import { commentsRouter } from "./routes/comments";
 import type { Context } from "./context";
 import type { ErrorResponse } from "../types";
 
@@ -41,7 +42,8 @@ app.use("*", cors(), async (c, next) => {
 const routes = app
   .basePath("/api")
   .route("/auth", authRouter)
-  .route("/posts", postRouter);
+  .route("/posts", postRouter)
+  .route("/comments", commentsRouter);
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {
@@ -74,6 +76,6 @@ app.onError((err, c) => {
   );
 });
 
-export default app;
-
 export type ApiRoutes = typeof routes;
+
+export default app;

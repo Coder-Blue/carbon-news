@@ -55,7 +55,7 @@ export const Route = createRootRouteWithContext<{
         sizes: "180x180",
         href: "/favicon/apple-touch-icon.png",
       },
-      { rel: "manifest", href: "/site.webmanifest", color: "#fffff" },
+      { rel: "manifest", href: "/assets/site.webmanifest", color: "#fffff" },
     ],
   }),
   component: RootComponent,
