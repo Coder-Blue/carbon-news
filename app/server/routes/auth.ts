@@ -12,7 +12,7 @@ import { loggedIn } from "../middleware/logged-in";
 import { type SuccessResponse, loginSchema } from "@/types";
 import type { Context } from "../context";
 
-export const authRoute = new Hono<Context>()
+export const authRouter = new Hono<Context>()
   .post("/signup", zValidator("form", loginSchema), async (c) => {
     const { username, password } = c.req.valid("form");
 

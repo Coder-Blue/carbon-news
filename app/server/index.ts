@@ -3,7 +3,8 @@ import { HTTPException } from "hono/http-exception";
 import { cors } from "hono/cors";
 import { lucia } from "./lucia";
 import * as process from "node:process";
-import { authRoute } from "./routes/auth";
+import { authRouter } from "./routes/auth";
+import { postRouter } from "./routes/posts";
 import type { Context } from "./context";
 import type { ErrorResponse } from "../types";
 
@@ -37,7 +38,10 @@ app.use("*", cors(), async (c, next) => {
   return next();
 });
 
-const routes = app.basePath("/api").route("/auth", authRoute);
+const routes = app
+  .basePath("/api")
+  .route("/auth", authRouter)
+  .route("/posts", postRouter);
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {

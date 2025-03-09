@@ -1,5 +1,7 @@
 import { relations } from "drizzle-orm";
 import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
 import { userTable } from "./auth";
 import { postUpvotesTable } from "./upvotes";
 import { commentsTable } from "./comments";
@@ -17,6 +19,17 @@ export const postsTable = pgTable("posts", {
   })
     .defaultNow()
     .notNull(),
+});
+
+export const insertPostSchema = createInsertSchema(postsTable, {
+  title: z.string().min(3, { message: "Tiêu đề ít nhất 3 ký tự trở lên" }),
+  url: z
+    .string()
+    .trim()
+    .url({ message: "Phải là URL hợp lệ" })
+    .optional()
+    .or(z.literal("")),
+  content: z.string().optional(),
 });
 
 export const postsRelations = relations(postsTable, ({ one, many }) => ({

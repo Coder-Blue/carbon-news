@@ -1,5 +1,7 @@
 import { relations } from "drizzle-orm";
 import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
 import { userTable } from "./auth";
 import { postsTable } from "./posts";
 import { commentUpvotesTable } from "./upvotes";
@@ -38,3 +40,9 @@ export const commentRelation = relations(commentsTable, ({ one, many }) => ({
   }),
   commentUpvotes: many(commentUpvotesTable, { relationName: "commentUpvotes" }),
 }));
+
+export const insertCommentsSchema = createInsertSchema(commentsTable, {
+  content: z
+    .string()
+    .min(3, { message: "Bình luận phải ít nhất 3 kí tự trở lên" }),
+});
