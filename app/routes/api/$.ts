@@ -9,4 +9,16 @@ export const APIRoute = createAPIFileRoute("/api/$")({
   POST: ({ request }) => {
     return app.fetch(request);
   },
+
+  PUT: ({ request }) => {
+    return app.fetch(request);
+  },
+
+  PATCH: ({ request }) => {
+    return app.fetch(request);
+  },
+
+  DELETE: ({ request }) => {
+    return app.fetch(request);
+  },
 });

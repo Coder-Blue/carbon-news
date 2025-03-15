@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { insertPostSchema } from "@/server/db/schemas/posts";
 import { insertCommentsSchema } from "@/server/db/schemas/comments";
+import type { ApiRoutes } from "@/server";
+
+export type { ApiRoutes };
 
 export type SuccessResponse<T = void> = {
   success: true;
@@ -16,10 +19,10 @@ export type ErrorResponse = {
 export const loginSchema = z.object({
   username: z
     .string()
-    .min(3)
+    .min(3, "Cần phải sử dụng ít nhất 3 kí tự")
     .max(31)
-    .regex(/^[a-zA-Z0-9_]+$/),
-  password: z.string().min(3).max(255),
+    .regex(/^[a-zA-Z0-9_]+$/, "Chỉ sử dụng kí tự trong bảng chữ cái và số"),
+  password: z.string().min(3, "Cần phải sử dụng ít nhất 3 kí tự").max(255),
 });
 
 export const createPostSchema = insertPostSchema
