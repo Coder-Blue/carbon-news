@@ -49,6 +49,9 @@ export const paginationSchema = z.object({
   site: z.string().optional(),
 });
 
+export type SortBy = z.infer<typeof sortBySchema>;
+export type Order = z.infer<typeof orderSchema>;
+
 export const createCommentSchema = insertCommentsSchema.pick({ content: true });
 
 export type Post = {

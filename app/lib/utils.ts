@@ -4,12 +4,19 @@ import { twMerge } from "tailwind-merge";
 import { type SQL, sql } from "drizzle-orm";
 import { PgColumn } from "drizzle-orm/pg-core";
 
+import { DateTime } from "luxon";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export function getISOFormatDateQuery(dateTimeColumn: PgColumn): SQL<string> {
   return sql<string>`to_char(${dateTimeColumn}, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')`;
+}
+
+export function relativeTime(date: string) {
+  const datetime = DateTime.fromISO(date);
+  return datetime.toRelative();
 }
 
 export function seo({
@@ -36,6 +43,7 @@ export function seo({
     { name: "og:site_name", content: title },
     { name: "og:title", content: title },
     { name: "og:description", content: description },
+    { name: "og:url", content: "https://carbon-daily.vercel.app" },
     { name: "og:locale", content: "vi_VN" },
     ...(image
       ? [

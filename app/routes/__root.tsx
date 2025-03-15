@@ -6,6 +6,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import type { QueryClient } from "@tanstack/react-query";
+import { Analytics } from "@vercel/analytics/react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "@/components/ui/sonner";
 import { seo } from "@/lib/utils";
@@ -94,6 +95,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           </footer>
         </div>
         <Toaster />
+        <Analytics />
         <TanStackRouterDevtools position="bottom-left" />
         <ReactQueryDevtools />
         <Scripts />
