@@ -26,11 +26,12 @@ export const Route = createRootRouteWithContext<{
         content: "width=device-width, initial-scale=1",
       },
       ...seo({
-        title: "Carbon News",
+        title: "Carbon Daily",
         description:
           "Đây là một trang cập nhật tin tức ngắn, nhanh và tự do được viết bằng TanStack Start và Hono",
-        keywords: "News,React,TanStack,Hono,JavaScript,TypeScript,Coding,Noah",
-        image: "https://i.ibb.co/B99BQZv/carbon-og.png",
+        keywords:
+          "News,React,TanStack,Hono,JavaScript,TypeScript,Coding,Noah,Daily",
+        image: "https://i.ibb.co/dwyndtrq/carbon-og.png",
       }),
     ],
     links: [

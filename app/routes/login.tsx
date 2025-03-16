@@ -33,7 +33,7 @@ const loginSearchSchema = z.object({
 
 export const Route = createFileRoute("/login")({
   head: () => ({
-    meta: [{ title: "Đăng nhập | Carbon News" }],
+    meta: [{ title: "Đăng nhập | Carbon Daily" }],
   }),
   validateSearch: zodSearchValidator(loginSearchSchema),
   beforeLoad: async ({ context, search }) => {

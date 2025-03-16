@@ -48,7 +48,7 @@ function postsInfiniteQueryOptions({
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [{ title: "Trang chủ | Carbon News" }],
+    meta: [{ title: "Trang chủ | Carbon Daily" }],
   }),
   validateSearch: zodSearchValidator(homeSearchSchema),
   loaderDeps: ({ search }) => ({

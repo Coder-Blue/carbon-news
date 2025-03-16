@@ -57,7 +57,7 @@ function commentsInfiniteQueryOptions({
 
 export const Route = createFileRoute("/post")({
   head: () => ({
-    meta: [{ title: "Bài viết | Carbon News" }],
+    meta: [{ title: "Bài viết | Carbon Daily" }],
   }),
   validateSearch: zodSearchValidator(postSearchSchema),
   loaderDeps: ({ search: { id, sortBy, order } }) => ({ id, sortBy, order }),

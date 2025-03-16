@@ -28,7 +28,7 @@ export default function Header() {
               alt="CarbonLogo"
               className="size-9 object-contain"
             />
-            <p className="cursor-pointer text-2xl font-bold">CarbonNews</p>
+            <p className="cursor-pointer text-2xl font-bold">CarbonDaily</p>
           </Link>
           <nav className="hidden items-center space-x-4 md:flex">
             <Link
@@ -82,7 +82,7 @@ export default function Header() {
           </SheetTrigger>
           <SheetContent className="mb-2">
             <SheetHeader>
-              <SheetTitle>CarbonNews</SheetTitle>
+              <SheetTitle>CarbonDaily</SheetTitle>
               <SheetDescription className="sr-only">
                 Điều hướng
               </SheetDescription>

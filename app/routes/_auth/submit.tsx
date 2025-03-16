@@ -24,7 +24,7 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/_auth/submit")({
   head: () => ({
-    meta: [{ title: "Đăng bài | Carbon News" }],
+    meta: [{ title: "Đăng bài | Carbon Daily" }],
   }),
   component: RouteComponent,
 });
