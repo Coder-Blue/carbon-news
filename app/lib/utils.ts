@@ -15,7 +15,7 @@ export function getISOFormatDateQuery(dateTimeColumn: PgColumn): SQL<string> {
 }
 
 export function relativeTime(date: string) {
-  const datetime = DateTime.fromISO(date);
+  const datetime = DateTime.fromISO(date, { locale: "vi-VN" });
   return datetime.toRelative();
 }
 

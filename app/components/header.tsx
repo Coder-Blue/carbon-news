@@ -37,7 +37,7 @@ export default function Header() {
             <Link to="/" className="hover:underline">
               top
             </Link>
-            <Link to="/" className="hover:underline">
+            <Link to="/submit" className="hover:underline">
               đăng
             </Link>
           </nav>
@@ -95,7 +95,7 @@ export default function Header() {
                 top
               </Link>
               <Link
-                to="/"
+                to="/submit"
                 onClick={() => setIsOpen(false)}
                 className="hover:underline"
               >

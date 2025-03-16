@@ -89,7 +89,7 @@ function RouteComponent() {
             ? "Đang tải thêm..."
             : hasNextPage
               ? "Tải thêm"
-              : "Không còn gì"}
+              : "Không có bài viết nào khác"}
         </Button>
       </div>
     </div>
