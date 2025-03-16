@@ -26,7 +26,7 @@ a hackernews clone made with:
 
 # How to run this?
 
-- Rename `env.example` to `env`, then adding a PostgreSQL database url like Neon, etc.
+- Rename `.env.example` to `.env`, then adding a PostgreSQL database url like Neon, etc.
 
 ```env
 DATABASE_URL=
