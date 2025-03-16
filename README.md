@@ -52,6 +52,8 @@ npx drizzle-kit push
 bunx drizzle-kit push
 ```
 
+Then
+
 ```bash
 npm run dev
 
