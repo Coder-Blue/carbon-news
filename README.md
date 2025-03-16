@@ -42,6 +42,16 @@ npm install
 bun install
 ```
 
+Then
+
+```bash
+npx drizzle-kit push
+
+#or
+
+bunx drizzle-kit push
+```
+
 ```bash
 npm run dev
 
