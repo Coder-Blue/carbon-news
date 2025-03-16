@@ -60,6 +60,15 @@ export const Route = createFileRoute("/post")({
     meta: [{ title: "Bài viết | Carbon News" }],
   }),
   validateSearch: zodSearchValidator(postSearchSchema),
+  loaderDeps: ({ search: { id, sortBy, order } }) => ({ id, sortBy, order }),
+  loader: async ({ context, deps: { id, sortBy, order } }) => {
+    await Promise.all([
+      context.queryClient.ensureQueryData(postQueryOptions(id)),
+      context.queryClient.ensureInfiniteQueryData(
+        commentsInfiniteQueryOptions({ id, sortBy, order }),
+      ),
+    ]);
+  },
   component: RouteComponent,
 });
 
@@ -89,9 +98,11 @@ function RouteComponent() {
         />
       )}
       <div className="mt-8 mb-4">
-        <h2 className="text-foreground mb-2 text-lg font-semibold">
-          Bình luận
-        </h2>
+        {comments && comments?.pages[0]!.data.length > 0 && (
+          <h2 className="text-foreground mb-2 text-lg font-semibold">
+            Bình luận
+          </h2>
+        )}
         {user && (
           <Card className="mb-4">
             <CardContent className="p-4">
@@ -103,7 +114,7 @@ function RouteComponent() {
           <SortBar sortBy={sortBy} order={order} />
         )}
       </div>
-      {comments && comments!.pages[0]!.data.length > 0 && (
+      {comments && comments?.pages[0]!.data.length > 0 && (
         <Card>
           <CardContent className="p-4">
             {comments.pages.map((page) =>

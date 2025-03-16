@@ -30,6 +30,7 @@ export const Route = createRootRouteWithContext<{
         description:
           "Đây là một trang cập nhật tin tức ngắn, nhanh và tự do được viết bằng TanStack Start và Hono",
         keywords: "News,React,TanStack,Hono,JavaScript,TypeScript,Coding,Noah",
+        image: "https://i.ibb.co/B99BQZv/carbon-og.png",
       }),
     ],
     links: [

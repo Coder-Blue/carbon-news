@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { userQueryOptions } from "@/lib/api";
 import { cn, relativeTime } from "@/lib/utils";
 import type { Post } from "@/types";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
@@ -11,9 +13,12 @@ type PostCardProps = {
 };
 
 export default function PostCard({ post, onUpvote }: PostCardProps) {
+  const { data: user } = useQuery(userQueryOptions());
+
   return (
     <Card className="flex items-start justify-start pt-3">
       <button
+        disabled={!user}
         onClick={() => {
           onUpvote?.(post.id);
         }}

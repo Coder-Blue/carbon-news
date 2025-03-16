@@ -51,6 +51,17 @@ export const Route = createFileRoute("/")({
     meta: [{ title: "Trang chủ | Carbon News" }],
   }),
   validateSearch: zodSearchValidator(homeSearchSchema),
+  loaderDeps: ({ search }) => ({
+    sortBy: search.sortBy,
+    order: search.order,
+    author: search.author,
+    site: search.site,
+  }),
+  loader: ({ context, deps: { sortBy, order, author, site } }) => {
+    context.queryClient.ensureInfiniteQueryData(
+      postsInfiniteQueryOptions({ sortBy, order, author, site }),
+    );
+  },
   component: RouteComponent,
 });
 

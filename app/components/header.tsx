@@ -31,10 +31,18 @@ export default function Header() {
             <p className="cursor-pointer text-2xl font-bold">CarbonNews</p>
           </Link>
           <nav className="hidden items-center space-x-4 md:flex">
-            <Link to="/" className="hover:underline">
+            <Link
+              to="/"
+              search={{ sortBy: "recent", order: "desc" }}
+              className="hover:underline"
+            >
               mới
             </Link>
-            <Link to="/" className="hover:underline">
+            <Link
+              to="/"
+              search={{ sortBy: "points", order: "desc" }}
+              className="hover:underline"
+            >
               top
             </Link>
             <Link to="/submit" className="hover:underline">
@@ -82,6 +90,7 @@ export default function Header() {
             <nav className="flex flex-col space-y-4">
               <Link
                 to="/"
+                search={{ sortBy: "recent", order: "desc" }}
                 onClick={() => setIsOpen(false)}
                 className="hover:underline"
               >
@@ -89,6 +98,7 @@ export default function Header() {
               </Link>
               <Link
                 to="/"
+                search={{ sortBy: "points", order: "desc" }}
                 onClick={() => setIsOpen(false)}
                 className="hover:underline"
               >
