@@ -364,6 +364,7 @@ export const postRouter = new Hono<Context>()
           title: postsTable.title,
           url: postsTable.url,
           points: postsTable.points,
+          content: postsTable.content,
           createdAt: getISOFormatDateQuery(postsTable.createdAt),
           commentCount: postsTable.commentCount,
           author: {
@@ -396,7 +397,7 @@ export const postRouter = new Hono<Context>()
       return c.json<SuccessResponse<Post>>(
         {
           success: true,
-          message: "Tìm thấy bái viết",
+          message: "Tìm thấy bài viết",
           data: post as Post,
         },
         200,

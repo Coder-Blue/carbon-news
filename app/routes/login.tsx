@@ -23,7 +23,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FieldInfo } from "@/components/field-info";
+import { FieldInfo } from "@/components";
 import { toast } from "sonner";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 

@@ -27,7 +27,7 @@ export const authRouter = new Hono<Context>()
 
     try {
       await db.insert(userTable).values({
-        id: username,
+        id: userId,
         username,
         password_hash: passwordHash,
       });

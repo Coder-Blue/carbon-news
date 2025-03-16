@@ -86,7 +86,7 @@ export type Comment = {
     username: string;
     id: string;
   };
-  childComment?: Comment[];
+  childComments?: Comment[];
 };
 
 export type PaginatedResponse<T> = {

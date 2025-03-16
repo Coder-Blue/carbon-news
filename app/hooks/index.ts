@@ -4,9 +4,14 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { current, produce } from "immer";
-import { type GetPostsSuccess, upvotePost } from "@/lib/api";
+import { type GetPostsSuccess, upvotePost, upvoteComment } from "@/lib/api";
 import { toast } from "sonner";
-import type { Post } from "@/types";
+import type {
+  SuccessResponse,
+  Post,
+  PaginatedResponse,
+  Comment,
+} from "@/types";
 
 function updatePostUpvote(draft: Post) {
   draft.points += draft.isUpvoted ? -1 : +1;
@@ -23,6 +28,17 @@ export function useUpvotePost() {
       await queryClient.cancelQueries({
         queryKey: ["post", Number(variable)],
       });
+
+      queryClient.setQueryData<SuccessResponse<Post>>(
+        ["post", Number(variable)],
+        produce((draft) => {
+          if (!draft) {
+            return undefined;
+          }
+          updatePostUpvote(draft.data);
+        }),
+      );
+
       queryClient.setQueriesData<InfiniteData<GetPostsSuccess>>(
         {
           queryKey: ["posts"],
@@ -45,6 +61,17 @@ export function useUpvotePost() {
       return { prevData };
     },
     onSuccess: (upvoteData, variable) => {
+      queryClient.setQueryData<SuccessResponse<Post>>(
+        ["post", Number(variable)],
+        produce((draft) => {
+          if (!draft) {
+            return undefined;
+          }
+          draft.data.points = upvoteData.data.count;
+          draft.data.isUpvoted = upvoteData.data.isUpvoted;
+        }),
+      );
+
       queryClient.setQueriesData<InfiniteData<GetPostsSuccess>>(
         {
           queryKey: ["posts"],
@@ -70,8 +97,9 @@ export function useUpvotePost() {
     },
     onError: (err, variable, context) => {
       console.error(err);
-      toast.error("Lỗi không thể tương tác với bài viết");
+      queryClient.invalidateQueries({ queryKey: ["post", Number(variable)] });
 
+      toast.error("Lỗi không thể tương tác với bài viết");
       if (context?.prevData) {
         queryClient.setQueriesData(
           { queryKey: ["posts"], type: "active" },
@@ -79,6 +107,86 @@ export function useUpvotePost() {
         );
         queryClient.invalidateQueries({ queryKey: ["posts"] });
       }
+    },
+  });
+}
+
+export function useUpvoteComment() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: {
+      id: string;
+      parentCommentId: number | null;
+      postId: number | null;
+    }) => upvoteComment(data.id),
+    onMutate: async ({ id, parentCommentId, postId }) => {
+      let prevData;
+      const queryKey = parentCommentId
+        ? ["comments", "comment", parentCommentId]
+        : ["comments", "post", postId];
+
+      await queryClient.cancelQueries({ queryKey });
+
+      queryClient.setQueriesData<InfiniteData<PaginatedResponse<Comment[]>>>(
+        { queryKey },
+        produce((oldData) => {
+          prevData = current(oldData);
+
+          if (!oldData) return undefined;
+
+          oldData.pages.forEach((page) =>
+            page.data.forEach((comment) => {
+              if (comment.id.toString() === id) {
+                const isUpvoted = comment.commentUpvotes.length > 0;
+                comment.points += isUpvoted ? -1 : +1;
+                comment.commentUpvotes = isUpvoted ? [] : [{ userId: "" }];
+              }
+            }),
+          );
+        }),
+      );
+
+      return { prevData };
+    },
+    onSuccess: (data, { id, parentCommentId, postId }) => {
+      const queryKey = parentCommentId
+        ? ["comments", "comment", parentCommentId]
+        : ["comments", "post", postId];
+
+      queryClient.setQueriesData<InfiniteData<PaginatedResponse<Comment[]>>>(
+        { queryKey },
+        produce((oldData) => {
+          if (!oldData) return undefined;
+
+          oldData.pages.forEach((page) =>
+            page.data.forEach((comment) => {
+              if (comment.id.toString() === id) {
+                comment.points = data.data.count;
+                comment.commentUpvotes = data.data.commentUpvotes;
+              }
+            }),
+          );
+        }),
+      );
+
+      queryClient.invalidateQueries({
+        queryKey: ["comments", "post"],
+        refetchType: "none",
+      });
+    },
+    onError: (err, { parentCommentId, postId }, context) => {
+      const queryKey = parentCommentId
+        ? ["comments", "comment", parentCommentId]
+        : ["comments", "post", postId];
+
+      console.error(err);
+      toast.error("Không thể tương tác với bình luận");
+
+      if (context?.prevData) {
+        queryClient.setQueriesData({ queryKey }, context.prevData);
+      }
+      queryClient.invalidateQueries({ queryKey });
     },
   });
 }

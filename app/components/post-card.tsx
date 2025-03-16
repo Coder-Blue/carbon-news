@@ -18,7 +18,7 @@ export default function PostCard({ post, onUpvote }: PostCardProps) {
           onUpvote?.(post.id);
         }}
         className={cn(
-          "text-muted-foreground hover:text-primary ml-3 flex flex-col items-center justify-center",
+          "text-muted-foreground hover:text-primary ml-3 flex cursor-pointer flex-col items-center justify-center",
           post.isUpvoted ? "text-primary" : "",
         )}
       >
@@ -77,7 +77,11 @@ export default function PostCard({ post, onUpvote }: PostCardProps) {
             <span>·</span>
             <span>{relativeTime(post.createdAt)}</span>
             <span>·</span>
-            <Link to={"/"} className="hover:underline" search={{ id: post.id }}>
+            <Link
+              to={"/post"}
+              className="hover:underline"
+              search={{ id: post.id }}
+            >
               {post.commentCount} bình luận
             </Link>
           </div>

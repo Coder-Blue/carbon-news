@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "@/components/ui/sonner";
 import { seo } from "@/lib/utils";
-import Header from "@/components/header";
+import { Header } from "@/components";
 import stylesCSS from "../styles.css?url";
 
 export const Route = createRootRouteWithContext<{

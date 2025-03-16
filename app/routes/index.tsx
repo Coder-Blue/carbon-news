@@ -9,8 +9,7 @@ import { z } from "zod";
 import { getPosts } from "@/lib/api";
 import { orderSchema, sortBySchema } from "@/types";
 import { Button } from "@/components/ui/button";
-import SortBar from "@/components/sort-bar";
-import PostCard from "@/components/post-card";
+import { PostCard, SortBar } from "@/components";
 
 const homeSearchSchema = z.object({
   sortBy: fallback(sortBySchema, "points").default("recent"),
@@ -40,9 +39,7 @@ function postsInfiniteQueryOptions({
     initialPageParam: 1,
     staleTime: Infinity,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      if (lastPage.pagination.totalPages <= lastPageParam) {
-        return undefined;
-      }
+      if (lastPage.pagination.totalPages <= lastPageParam) return undefined;
 
       return lastPageParam + 1;
     },
