@@ -3,16 +3,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   infiniteQueryOptions,
   queryOptions,
+  useQuery,
   useSuspenseInfiniteQuery,
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { z } from "zod";
 import { fallback, zodSearchValidator } from "@tanstack/router-zod-adapter";
-import { getComments, getPost } from "@/lib/api";
+import { getComments, getPost, userQueryOptions } from "@/lib/api";
 import { useUpvoteComment, useUpvotePost } from "@/hooks";
 import { orderSchema, sortBySchema } from "@/types";
 import { Card, CardContent } from "@/components/ui/card";
-import { CommentCard, PostCard, SortBar } from "@/components";
+import { CommentCard, CommentForm, PostCard, SortBar } from "@/components";
 import { ChevronDownIcon } from "lucide-react";
 
 const postSearchSchema = z.object({
@@ -66,6 +67,7 @@ function RouteComponent() {
   const { id, sortBy, order } = Route.useSearch();
   const [activeReplyId, setActiveReplyId] = useState<number | null>(null);
   const data = useSuspenseQuery(postQueryOptions(id));
+  const { data: user } = useQuery(userQueryOptions());
   const {
     data: comments,
     hasNextPage,
@@ -90,6 +92,13 @@ function RouteComponent() {
         <h2 className="text-foreground mb-2 text-lg font-semibold">
           Bình luận
         </h2>
+        {user && (
+          <Card className="mb-4">
+            <CardContent className="p-4">
+              <CommentForm id={id} />
+            </CardContent>
+          </Card>
+        )}
         {comments && comments?.pages[0]!.data.length > 0 && (
           <SortBar sortBy={sortBy} order={order} />
         )}
@@ -124,7 +133,7 @@ function RouteComponent() {
                   ) : (
                     <>
                       <ChevronDownIcon size={12} />
-                      <span>Các câu trả lời khác</span>
+                      <span>Các bình luận khác</span>
                     </>
                   )}
                 </button>

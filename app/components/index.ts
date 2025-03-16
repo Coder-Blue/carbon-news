@@ -1,4 +1,5 @@
 import CommentCard from "./comment-card";
+import CommentForm from "./comment-form";
 import DefaultLoading from "./default-loading";
 import ErrorComponent from "./error-component";
 import FieldInfo from "./field-info";
@@ -10,6 +11,7 @@ import SortBar from "./sort-bar";
 
 export {
   CommentCard,
+  CommentForm,
   DefaultLoading,
   ErrorComponent,
   FieldInfo,

@@ -8,5 +8,5 @@ export const Route = createFileRoute("/_auth")({
     if (!user)
       throw redirect({ to: "/login", search: { redirect: location.href } });
   },
-  component: () => <Outlet />,
+  component: Outlet,
 });
