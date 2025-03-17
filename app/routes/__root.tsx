@@ -93,7 +93,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           <Header />
           <main className="container mx-auto grow p-4">{children}</main>
           <footer className="p-4 text-center">
-            <p className="text-muted-foreground text-sm">CarbonNews &copy;</p>
+            <p className="text-muted-foreground text-sm">CarbonDaily &copy;</p>
           </footer>
         </div>
         <Toaster />

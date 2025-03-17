@@ -24,7 +24,7 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <Link to="/" className="flex items-center gap-2">
             <Image
-              src="/assets/logo.png"
+              src="/assets/logo.webp"
               alt="CarbonLogo"
               className="size-9 object-contain"
             />
