@@ -127,6 +127,15 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+button,
+[role="button"] {
+  @apply cursor-pointer;
+}
+
+:disabled {
+  @apply cursor-default;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

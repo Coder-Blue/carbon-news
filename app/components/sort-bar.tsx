@@ -37,8 +37,12 @@ export default function SortBar({ sortBy, order }: SortBarProps) {
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="points">Điểm số</SelectItem>
-          <SelectItem value="recent">Gần đây</SelectItem>
+          <SelectItem value="points" className="cursor-pointer">
+            Điểm số
+          </SelectItem>
+          <SelectItem value="recent" className="cursor-pointer">
+            Gần đây
+          </SelectItem>
         </SelectContent>
       </Select>
       <Button
@@ -53,7 +57,6 @@ export default function SortBar({ sortBy, order }: SortBarProps) {
             }),
           })
         }
-        className="hover:cursor-pointer"
         aria-label={order === "asc" ? "Sắp xếp giảm dần" : "Sắp xếp tăng dần"}
       >
         <ArrowUpIcon

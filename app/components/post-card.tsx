@@ -28,7 +28,9 @@ export default function PostCard({ post, onUpvote }: PostCardProps) {
         )}
       >
         <ChevronUpIcon size={20} />
-        <span className="text-xs font-medium">{post.points}</span>
+        <span className="cursor-pointer text-xs font-medium">
+          {post.points}
+        </span>
       </button>
       <div className="flex grow flex-col justify-between">
         <div className="flex items-start p-3 py-0">

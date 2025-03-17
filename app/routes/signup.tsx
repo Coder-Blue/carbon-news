@@ -162,7 +162,7 @@ function RouteComponent() {
                     <Button
                       type="submit"
                       disabled={!canSubmit}
-                      className="w-full cursor-pointer"
+                      className="w-full"
                     >
                       {isSubmitting ? "..." : "Đăng ký"}
                     </Button>
