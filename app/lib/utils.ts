@@ -43,7 +43,7 @@ export function seo({
     { name: "og:site_name", content: title },
     { name: "og:title", content: title },
     { name: "og:description", content: description },
-    { name: "og:url", content: "https://carbon-daily.vercel.app" },
+    { name: "og:url", content: "https://carbon-daily.netlify.app" },
     { name: "og:locale", content: "en_US" },
     ...(image
       ? [

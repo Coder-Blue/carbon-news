@@ -1,3 +1,7 @@
+# Access the site:
+
+[Carbon Daily Netlify Deployment for English users](https://carbon-daily.netlify.app)
+
 # TLDR;
 
 a hackernews clone made with:
