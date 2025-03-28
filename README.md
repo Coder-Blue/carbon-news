@@ -1,6 +1,6 @@
 # TLDR;
 
-a hackernews clone made with:
+một phiên bản nhái của hackernews được sử dụng các công nghệ sau:
 
 - [React](https://react.dev)
 
@@ -18,56 +18,56 @@ a hackernews clone made with:
 
 - [shadcn/ui](https://ui.shadcn.com/)
 
-# Why does this exist?
+# Tại sao repo này tồn tại?
 
-- for researching, testing new alternative meta-framework compare to [NextJS](https://nextjs.org).
+- thử nghiệm React meta-framework thay thế ngoài [NextJS](https://nextjs.org).
 
-- youtube video for website inspiration: [BetterStack](https://www.youtube.com/watch?v=eHbO5OWBBpg)
+- video youtube lấy ý tưởng chính cho app: [BetterStack](https://www.youtube.com/watch?v=eHbO5OWBBpg)
 
-# How to run this?
+# Cách để chạy?
 
-- Rename `.env.example` to `.env`, then adding a PostgreSQL database url like Neon, etc.
+- Đổi tên `.env.example` thành `.env`, rồi thêm đường link kết nối PostgreSQL như Neon, vân vân.
 
 ```env
 DATABASE_URL=
 ```
 
-- Run the following command:
+- Rồi chạy lần lượt các câu lệnh sau:
 
 ```bash
 npm install
 
-#or
+#hoặc
 
 bun install
 ```
 
-Then
+Rồi
 
 ```bash
 npx drizzle-kit push
 
-#or
+#hoặc
 
 bunx drizzle-kit push
 ```
 
-Then
+Rồi
 
 ```bash
 npm run dev
 
-#or
+#hoặc
 
 bun dev
 ```
 
-- Details are in the docs I linked, follow the guiding to further developments.
+- Thông tin chi tiết đều đã được viết ở đây, hãy theo dõi, và bạn có quyền đóng góp hỗ trợ.
 
 # Donate
 
-- i'm broken =(((, thank you very much <3
+- tác giả thiếu thốn, donate đi <3
 
-- contact for supporting: [email](mailto:trananhquan1009@gmail.com)
+- liên hệ hỗ trợ: [email](mailto:trananhquan1009@gmail.com)
 
 ![BIDV](https://github.com/Coder-Blue/argon-note/blob/main/donation/IMG_4049.jpg?raw=true)
