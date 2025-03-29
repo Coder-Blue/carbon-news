@@ -85,8 +85,5 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.28.0",
     "vite-tsconfig-paths": "^5.1.4"
-  },
-  "overrides": {
-    "vite": "https://pkg.pr.new/vitejs/rolldown-vite@03e6286"
   }
 }
